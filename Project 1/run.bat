@@ -1,0 +1,17 @@
+(clear)
+(open "input.txt" inputFile "r")
+(open "output.txt" outputFile "w")
+(load facts.clp)
+(load funct.clp)
+(load rules.clp)
+
+(reset)
+(watch rules)
+(watch facts)
+(agenda)
+(facts)
+(run)
+(facts)
+
+(close outputFile)
+(close inputFile)
