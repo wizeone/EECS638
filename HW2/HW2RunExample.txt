@@ -1,0 +1,55 @@
+Dominic Pitts
+EECS 638 HW2
+Example Run
+
+
+         CLIPS (6.30 3/17/15)
+CLIPS> (clear)
+CLIPS> (load facts.clp)
+Defining deftemplate: fact
+Defining deffacts: facts
+TRUE
+CLIPS> (load rules.clp)
+Defining defrule: R1 +j+j+j
+Defining defrule: R2 =j+j+j
+Defining defrule: R3 +j+j+j
+Defining defrule: R4 =j+j+j
+Defining defrule: R5 +j+j+j
+Defining defrule: R6 +j+j+j
+Defining defrule: R7 =j+j+j
+Defining defrule: R8 +j+j+j
+Defining defrule: R9 =j+j+j
+TRUE
+CLIPS> (reset)
+CLIPS> (watch facts)
+CLIPS> (watch rules)
+CLIPS> (agenda
+)
+5      R5: f-2,f-3
+2      R2: f-1,f-3
+1      R1: f-1,f-2
+For a total of 3 activations.
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (fact (name A))
+f-2     (fact (name B))
+f-3     (fact (name C))
+For a total of 4 facts.
+CLIPS> (run)
+FIRE    1 R5: f-2,f-3
+==> f-4     (fact (name F))
+FIRE    2 R2: f-1,f-3
+FIRE    3 R1: f-1,f-2
+==> f-5     (fact (name E))
+FIRE    4 R8: f-5,f-4
+==> f-6     (fact (name H))
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (fact (name A))
+f-2     (fact (name B))
+f-3     (fact (name C))
+f-4     (fact (name F))
+f-5     (fact (name E))
+f-6     (fact (name H))
+For a total of 7 facts.
+CLIP

@@ -4,6 +4,7 @@
 
 ; read input file and give access accordingly
 (defrule getLine
+  (declare (salience 4))
 
   ?factX <- (resRequest (name "X") (request no))
   ?factY <- (resRequest (name "Y") (request no))
@@ -25,32 +26,32 @@
     then
     (modify ?factEnd (quit yes))
     (printout outputFile "End of program." crlf)
-  else
+  )
   ; based on input, grant access to correct resource
   ; priority X > Y > Z
   ;
   ; Checks values of inputs left to right granting access the moment
   ; it finds a 1, if all inputs are 0 a free access is granted
-    (if (= ?X 1)
-      then
-      (modify ?factX (request yes)) ; X given access
-    else
-      (if (= ?Y 1)
-        then
-        (modify ?factY (request yes)) ; Y given access
-      else
-        (if (= ?Z 1)
-          then
-          (modify ?factZ (request yes)) ; Z given access
-        else
-          (modify ?factFree (request yes)) ; no access given
-        )
-      )
-    )
+  (if (= ?X 1)
+    then
+    (modify ?factX (request yes)) ; X given access
+  )
+  (if (= ?Y 1)
+    then
+    (modify ?factY (request yes)) ; Y given access
+  )
+  (if (= ?Z 1)
+    then
+    (modify ?factZ (request yes)) ; Z given access
+  )
+  (if (and (= ?X 0) (= ?Y 0) (= ?Z 0))
+    then
+    (modify ?factFree (request yes)) ; no access given
   )
 )
 
 (defrule allowAccessX
+  (declare (salience 3))
   ; request for X
   ?factXReq <- (resRequest (name "X") (request yes))
   ; X doesn't already have resource
@@ -84,6 +85,7 @@
 )
 
 (defrule allowAccessY
+  (declare (salience 2))
   ; request for Y
   ?factYReq <- (resRequest (name "Y") (request yes))
   ; Y doesn't already have resource
@@ -117,6 +119,7 @@
 )
 
 (defrule allowAccessZ
+  (declare (salience 1))
   ; request for Z
   ?factZReq <- (resRequest (name "Z") (request yes))
   ; Z doesn't already have resource
@@ -148,7 +151,7 @@
 )
 
 (defrule allFree
-
+  (declare (salience 0))
   ?factFree <- (resRequest (name "Free") (request yes))
 
   =>
@@ -161,6 +164,7 @@
 )
 
 (defrule P1toP2
+  (declare (salience 3))
   ;X is requested still, p1 is in use and p2 has no resources
   (reqNode (name "Request for product X") (resource yes))
   ?p1Res <- (prodNode (name "p1") (resource yes))
@@ -183,6 +187,7 @@
 )
 
 (defrule P2toP3
+  (declare (salience 3))
   ;X is requested still, p2 is in use and p3 has no resources
   (reqNode (name "Request for product X") (resource yes))
   ?p2Res <- (prodNode (name "p2") (resource yes))
@@ -205,6 +210,7 @@
 )
 
 (defrule P3toP4
+  (declare (salience 3))
   ;X is requested still, p3 is in use and p4 has no resources
   (reqNode (name "Request for product X") (resource yes))
   ?p3Res <- (prodNode (name "p3") (resource yes))
@@ -227,6 +233,7 @@
 )
 
 (defrule P5toP6
+  (declare (salience 2))
   ;Y is requested still, p5 is in use and p6 has no resources
   (reqNode (name "Request for product Y") (resource yes))
   ?p5Res <- (prodNode (name "p5") (resource yes))
@@ -249,6 +256,7 @@
 )
 
 (defrule P6toP7
+  (declare (salience 2))
   ;Y is requested still, p6 is in use and p7 has no resources
   (reqNode (name "Request for product Y") (resource yes))
   ?p6Res <- (prodNode (name "p6") (resource yes))
@@ -271,6 +279,7 @@
 )
 
 (defrule P8toP9
+  (declare (salience 1))
   ;Z is requested still, p8 is in use and p9 has no resources
   (reqNode (name "Request for product Z") (resource yes))
   ?p8Res <- (prodNode (name "p8") (resource yes))
@@ -292,6 +301,7 @@
 )
 
 (defrule P9toP10
+  (declare (salience 1))
   ;Z is requested still, p9 is in use and p10 has no resources
   (reqNode (name "Request for product Z") (resource yes))
   ?p9Res <- (prodNode (name "p9") (resource yes))
@@ -313,6 +323,7 @@
 )
 
 (defrule productX
+  (declare (salience 3))
   ; X node active
   ?reqX <- (reqNode (name "Request for product X") (resource yes))
   ; request for X active
@@ -342,6 +353,7 @@
 )
 
 (defrule productY
+  (declare (salience 2))
   ; Y node active
   ?reqY <- (reqNode (name "Request for product Y") (resource yes))
   ; request for Y active
@@ -371,6 +383,7 @@
 )
 
 (defrule productZ
+  (declare (salience 1))
   ; Z node active
   ?reqZ <- (reqNode (name "Request for product Z") (resource yes))
   ; request for Z active
