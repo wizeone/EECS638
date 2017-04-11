@@ -1,6 +1,7 @@
 (clear)
 (open "input.txt" inputFile "r")
 (open "output.txt" outputFile "w")
+(load globals.clp)
 (load facts.clp)
 (load funct.clp)
 (load rules.clp)
