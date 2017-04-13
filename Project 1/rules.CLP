@@ -24,8 +24,8 @@
 
   (if (and (= ?X -1) (= ?Y -1) (= ?Z -1))
     then
-    (modify ?factEnd (quit yes))
     (printout outputFile "End of program." crlf)
+    (halt)
   )
   ; based on input, grant access to correct resource
   ; priority X > Y > Z
@@ -35,18 +35,21 @@
   (if (= ?X 1)
     then
     (modify ?factX (request yes)) ; X given access
-  )
-  (if (= ?Y 1)
-    then
-    (modify ?factY (request yes)) ; Y given access
-  )
-  (if (= ?Z 1)
-    then
-    (modify ?factZ (request yes)) ; Z given access
-  )
-  (if (and (= ?X 0) (= ?Y 0) (= ?Z 0))
-    then
-    (modify ?factFree (request yes)) ; no access given
+  else
+    (if (= ?Y 1)
+      then
+      (modify ?factY (request yes)) ; Y given access
+    else
+      (if (= ?Z 1)
+        then
+        (modify ?factZ (request yes)) ; Z given access
+      else
+        (if (and (= ?X 0) (= ?Y 0) (= ?Z 0))
+          then
+          (modify ?factFree (request yes)) ; no access given
+        )
+      )
+    )
   )
 )
 
@@ -82,6 +85,20 @@
   ;print actions
   (printout outputFile "Reallocating resources from Resources -A- and -B- to -Request for product X- and -p1" crlf)
   (printCurrentState)
+
+  ; get line values
+  (bind ?X (read inputFile))
+  (bind ?Y (read inputFile))
+  (bind ?Z (read inputFile))
+
+  (printout outputFile "Input values: " ?X " " ?Y " " ?Z crlf)
+  (printout outputFile "Production in progress. Input discarded" crlf)
+
+  (if (and (= ?X -1) (= ?Y -1) (= ?Z -1))
+    then
+    (printout outputFile "End of program." crlf)
+    (halt)
+  )
 )
 
 (defrule allowAccessY
@@ -116,6 +133,20 @@
   ;print actions
   (printout outputFile "Reallocating resources from Resources -B- and -C- to -Request for product -Y- and -p5-" crlf)
   (printCurrentState)
+
+  ; get line values
+  (bind ?X (read inputFile))
+  (bind ?Y (read inputFile))
+  (bind ?Z (read inputFile))
+
+  (printout outputFile "Input values: " ?X " " ?Y " " ?Z crlf)
+  (printout outputFile "Production in progress. Input discarded" crlf)
+
+  (if (and (= ?X -1) (= ?Y -1) (= ?Z -1))
+    then
+    (printout outputFile "End of program." crlf)
+    (halt)
+  )
 )
 
 (defrule allowAccessZ
@@ -148,6 +179,20 @@
   ;print actions
   (printout outputFile "Reallocating resources from Resource -C- to -Request for product -Z- and -p8-" crlf)
   (printCurrentState)
+
+  ; get line values
+  (bind ?X (read inputFile))
+  (bind ?Y (read inputFile))
+  (bind ?Z (read inputFile))
+
+  (printout outputFile "Input values: " ?X " " ?Y " " ?Z crlf)
+  (printout outputFile "Production in progress. Input discarded" crlf)
+
+  (if (and (= ?X -1) (= ?Y -1) (= ?Z -1))
+    then
+    (printout outputFile "End of program." crlf)
+    (halt)
+  )
 )
 
 (defrule allFree
@@ -184,6 +229,20 @@
   ;print actions
   (printout outputFile "Transitioned from p1 to p2" crlf)
   (printCurrentState)
+
+  ; get line values
+  (bind ?X (read inputFile))
+  (bind ?Y (read inputFile))
+  (bind ?Z (read inputFile))
+
+  (printout outputFile "Input values: " ?X " " ?Y " " ?Z crlf)
+  (printout outputFile "Production in progress. Input discarded" crlf)
+
+  (if (and (= ?X -1) (= ?Y -1) (= ?Z -1))
+    then
+    (printout outputFile "End of program." crlf)
+    (halt)
+  )
 )
 
 (defrule P2toP3
@@ -207,6 +266,20 @@
   ;print actions
   (printout outputFile "Transitioned from p2 to p3" crlf)
   (printCurrentState)
+
+  ; get line values
+  (bind ?X (read inputFile))
+  (bind ?Y (read inputFile))
+  (bind ?Z (read inputFile))
+
+  (printout outputFile "Input values: " ?X " " ?Y " " ?Z crlf)
+  (printout outputFile "Production in progress. Input discarded" crlf)
+
+  (if (and (= ?X -1) (= ?Y -1) (= ?Z -1))
+    then
+    (printout outputFile "End of program." crlf)
+    (halt)
+  )
 )
 
 (defrule P3toP4
@@ -230,6 +303,20 @@
   ;print actions
   (printout outputFile "Transitioned from p3 to p4" crlf)
   (printCurrentState)
+
+  ; get line values
+  (bind ?X (read inputFile))
+  (bind ?Y (read inputFile))
+  (bind ?Z (read inputFile))
+
+  (printout outputFile "Input values: " ?X " " ?Y " " ?Z crlf)
+  (printout outputFile "Production in progress. Input discarded" crlf)
+
+  (if (and (= ?X -1) (= ?Y -1) (= ?Z -1))
+    then
+    (printout outputFile "End of program." crlf)
+    (halt)
+  )
 )
 
 (defrule P5toP6
@@ -253,6 +340,20 @@
   ;print actions
   (printout outputFile "Transitioned from p5 to p6" crlf)
   (printCurrentState)
+
+  ; get line values
+  (bind ?X (read inputFile))
+  (bind ?Y (read inputFile))
+  (bind ?Z (read inputFile))
+
+  (printout outputFile "Input values: " ?X " " ?Y " " ?Z crlf)
+  (printout outputFile "Production in progress. Input discarded" crlf)
+
+  (if (and (= ?X -1) (= ?Y -1) (= ?Z -1))
+    then
+    (printout outputFile "End of program." crlf)
+    (halt)
+  )
 )
 
 (defrule P6toP7
@@ -276,6 +377,20 @@
   ;print actions
   (printout outputFile "Transitioned from p6 to p7" crlf)
   (printCurrentState)
+
+  ; get line values
+  (bind ?X (read inputFile))
+  (bind ?Y (read inputFile))
+  (bind ?Z (read inputFile))
+
+  (printout outputFile "Input values: " ?X " " ?Y " " ?Z crlf)
+  (printout outputFile "Production in progress. Input discarded" crlf)
+
+  (if (and (= ?X -1) (= ?Y -1) (= ?Z -1))
+    then
+    (printout outputFile "End of program." crlf)
+    (halt)
+  )
 )
 
 (defrule P8toP9
@@ -298,6 +413,20 @@
   ;print actions
   (printout outputFile "Transitioned from p8 to p9" crlf)
   (printCurrentState)
+
+  ; get line values
+  (bind ?X (read inputFile))
+  (bind ?Y (read inputFile))
+  (bind ?Z (read inputFile))
+
+  (printout outputFile "Input values: " ?X " " ?Y " " ?Z crlf)
+  (printout outputFile "Production in progress. Input discarded" crlf)
+
+  (if (and (= ?X -1) (= ?Y -1) (= ?Z -1))
+    then
+    (printout outputFile "End of program." crlf)
+    (halt)
+  )
 )
 
 (defrule P9toP10
@@ -320,6 +449,20 @@
   ;print actions
   (printout outputFile "Transitioned from p9 to p10" crlf)
   (printCurrentState)
+
+  ; get line values
+  (bind ?X (read inputFile))
+  (bind ?Y (read inputFile))
+  (bind ?Z (read inputFile))
+
+  (printout outputFile "Input values: " ?X " " ?Y " " ?Z crlf)
+  (printout outputFile "Production in progress. Input discarded" crlf)
+
+  (if (and (= ?X -1) (= ?Y -1) (= ?Z -1))
+    then
+    (printout outputFile "End of program." crlf)
+    (halt)
+  )
 )
 
 (defrule productX

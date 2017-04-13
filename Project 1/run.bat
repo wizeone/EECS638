@@ -1,6 +1,7 @@
 (clear)
 (open "input.txt" inputFile "r")
 (open "output.txt" outputFile "w")
+(open "outputNOCOMMENTS.txt" outputFile2 "w")
 (load globals.clp)
 (load facts.clp)
 (load funct.clp)
@@ -15,4 +16,5 @@
 (facts)
 
 (close outputFile)
+(close outputFile2)
 (close inputFile)
